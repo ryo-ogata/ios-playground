@@ -13,13 +13,13 @@
 # pragma mark - View lifecycle methods
 
 - (void)awakeFromNib {
-    self.showsVerticalScrollIndicator = NO;
+    // Initialization code
     self.showsHorizontalScrollIndicator = NO;
     self.scrollEnabled = YES;
     self.pagingEnabled = NO;
     self.decelerationRate = UIScrollViewDecelerationRateFast;
-    self.backgroundColor = [UIColor clearColor];
-    self.backgroundView.backgroundColor = [UIColor clearColor];
+//    self.backgroundColor = [UIColor clearColor];
+//    self.backgroundView.backgroundColor = [UIColor clearColor];
 }
 
 @end

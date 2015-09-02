@@ -16,4 +16,8 @@
     return windowWidth * 0.8;
 }
 
++ (CGFloat)cellHeight {
+    return 400.f;
+}
+
 @end

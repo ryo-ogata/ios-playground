@@ -14,4 +14,6 @@
 
 + (CGFloat)cellWidth;
 
++ (CGFloat)cellHeight;
+
 @end
