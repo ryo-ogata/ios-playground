@@ -14,8 +14,8 @@
 		475918D61B8ED3C4006CF19D /* ios_playgroundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918D51B8ED3C4006CF19D /* ios_playgroundTests.m */; };
 		475918ED1B8EDE19006CF19D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918EA1B8EDE19006CF19D /* AppDelegate.m */; };
 		475918EE1B8EDE19006CF19D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918EA1B8EDE19006CF19D /* AppDelegate.m */; };
-		475918EF1B8EDE19006CF19D /* OPITopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918EC1B8EDE19006CF19D /* OPITopViewController.m */; };
-		475918F01B8EDE19006CF19D /* OPITopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918EC1B8EDE19006CF19D /* OPITopViewController.m */; };
+		475918EF1B8EDE19006CF19D /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918EC1B8EDE19006CF19D /* TopViewController.m */; };
+		475918F01B8EDE19006CF19D /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918EC1B8EDE19006CF19D /* TopViewController.m */; };
 		475919011B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918FF1B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m */; };
 		475919021B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475918FF1B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m */; };
 		475919071B8EE099006CF19D /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 475919061B8EE099006CF19D /* CustomCollectionViewCell.m */; };
@@ -48,8 +48,8 @@
 		475918D51B8ED3C4006CF19D /* ios_playgroundTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_playgroundTests.m; sourceTree = "<group>"; };
 		475918E91B8EDE19006CF19D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		475918EA1B8EDE19006CF19D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		475918EB1B8EDE19006CF19D /* OPITopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPITopViewController.h; sourceTree = "<group>"; };
-		475918EC1B8EDE19006CF19D /* OPITopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPITopViewController.m; sourceTree = "<group>"; };
+		475918EB1B8EDE19006CF19D /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
+		475918EC1B8EDE19006CF19D /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
 		475918FE1B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewFlowLayoutViewController.h; sourceTree = "<group>"; };
 		475918FF1B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewFlowLayoutViewController.m; sourceTree = "<group>"; };
 		475919051B8EE099006CF19D /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
@@ -140,8 +140,8 @@
 				475918E01B8EDDBA006CF19D /* UICollectionViewFlowLayout */,
 				475918E91B8EDE19006CF19D /* AppDelegate.h */,
 				475918EA1B8EDE19006CF19D /* AppDelegate.m */,
-				475918EB1B8EDE19006CF19D /* OPITopViewController.h */,
-				475918EC1B8EDE19006CF19D /* OPITopViewController.m */,
+				475918EB1B8EDE19006CF19D /* TopViewController.h */,
+				475918EC1B8EDE19006CF19D /* TopViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -264,7 +264,7 @@
 			files = (
 				475918B91B8ED3C3006CF19D /* main.m in Sources */,
 				475918ED1B8EDE19006CF19D /* AppDelegate.m in Sources */,
-				475918EF1B8EDE19006CF19D /* OPITopViewController.m in Sources */,
+				475918EF1B8EDE19006CF19D /* TopViewController.m in Sources */,
 				4759190B1B8EE150006CF19D /* CustomCollectionView.m in Sources */,
 				475919011B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m in Sources */,
 				475919071B8EE099006CF19D /* CustomCollectionViewCell.m in Sources */,
@@ -277,7 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				475918EE1B8EDE19006CF19D /* AppDelegate.m in Sources */,
-				475918F01B8EDE19006CF19D /* OPITopViewController.m in Sources */,
+				475918F01B8EDE19006CF19D /* TopViewController.m in Sources */,
 				475918D61B8ED3C4006CF19D /* ios_playgroundTests.m in Sources */,
 				4759190C1B8EE150006CF19D /* CustomCollectionView.m in Sources */,
 				475919021B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m in Sources */,
@@ -487,6 +487,7 @@
 				475918DB1B8ED3C4006CF19D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		475918DC1B8ED3C4006CF19D /* Build configuration list for PBXNativeTarget "ios-playgroundTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +496,7 @@
 				475918DE1B8ED3C4006CF19D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

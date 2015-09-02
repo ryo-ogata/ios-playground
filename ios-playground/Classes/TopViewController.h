@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPITopViewController : UIViewController
+@interface TopViewController : UIViewController
 
 
 @end

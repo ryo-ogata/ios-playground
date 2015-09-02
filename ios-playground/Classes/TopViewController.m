@@ -6,20 +6,20 @@
 //  Copyright (c) 2015年 oganity. All rights reserved.
 //
 
-#import "OPITopViewController.h"
+#import "TopViewController.h"
 
 typedef enum : NSUInteger {
     OPIMenuCollectionViewLayout,
     OPIMenuLimit,
 } OPIMenuItem;
 
-@interface OPITopViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface TopViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation OPITopViewController
+@implementation TopViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
