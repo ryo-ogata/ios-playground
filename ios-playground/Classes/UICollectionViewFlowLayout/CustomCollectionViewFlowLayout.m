@@ -10,32 +10,40 @@
 #import "CustomCollectionViewCell.h"
 
 @interface CustomCollectionViewFlowLayout() {
-    CGFloat _itemWidth;
-    CGFloat _itemHeight;
-    CGFloat _pageWidth;
-    CGFloat _pageHeight;
+    // セルの横幅
+    CGFloat _cellWidth;
+    // セルの縦幅
+    CGFloat _cellHeight;
+    // 左右のビューをはみださせる距離
     CGFloat _offsetHorizontal;
-    NSArray *_rectInfos; //rectInfos[section][row]の2次元配列
+    // コレクションビューの横幅
+    CGFloat _pageWidth;
+    // コレクションビューの縦幅
+    CGFloat _pageHeight;
+    // レイアウト情報
+    // rectInfos[section][row]の2次元配列
+    NSArray *_rectInfos;
+    // コレクションビューのコンテンツサイズ
+    // すべてのアイテムが収まりきるサイズを指定する。
     CGSize _contentSize;
 }
 @end
 
 @implementation CustomCollectionViewFlowLayout
 
+/*
+ 描画するレイアウト情報を事前に作る
+ */
 -(void) prepareLayout {
-    self.minimumInteritemSpacing = 0.f;
-    self.minimumLineSpacing = 0.f;
-    self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     // 実際に表示するセルのクラスからサイズを取得する
-    _itemWidth = [CustomCollectionViewCell cellWidth];
-    _itemHeight = [CustomCollectionViewCell cellHeight];
-    self.itemSize = CGSizeMake(_itemWidth, _itemHeight);
+    // 今回はすべて同じサイズのセルをつかう
+    _cellWidth = [CustomCollectionViewCell cellWidth];
+    _cellHeight = [CustomCollectionViewCell cellHeight];
     _pageWidth = CGRectGetWidth(self.collectionView.bounds);
     _pageHeight = CGRectGetHeight(self.collectionView.bounds);
     // collectionViewの横幅と_itemWidthの差分の半分が左(右)マージン
-    _offsetHorizontal = (_pageWidth - _itemWidth) * 0.5;
-    self.sectionInset = UIEdgeInsetsMake(0, _offsetHorizontal, 0, _offsetHorizontal);
-    // セルの位置情報を定義
+    _offsetHorizontal = (_pageWidth - _cellWidth) * 0.5;
+    // セルの位置情報を作る
     CGFloat currentPosition = _offsetHorizontal;
     NSMutableArray *sectionRects = [NSMutableArray array];
     NSInteger sectionCount = [self.collectionView numberOfSections];
@@ -43,19 +51,24 @@
         NSMutableArray *rowRects = [NSMutableArray array];
         for (int i = 0; i < [self.collectionView numberOfItemsInSection:section]; i++) {
             UICollectionViewLayoutAttributes *attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:i inSection:section]];
-            attr.center = CGPointMake(currentPosition + _itemWidth * 0.5, _itemHeight * 0.5);
-            attr.size = CGSizeMake(_itemWidth, _itemHeight);
+            attr.center = CGPointMake(currentPosition + _cellWidth * 0.5, _cellHeight * 0.5);
+            attr.size = CGSizeMake(_cellWidth, _cellHeight);
             [rowRects addObject:attr];
-            currentPosition += _itemWidth + self.minimumLineSpacing + self.minimumInteritemSpacing;
+            currentPosition += _cellWidth + self.minimumLineSpacing + self.minimumInteritemSpacing;
         }
         [sectionRects addObject:rowRects];
     }
-    // 最後に右マージンを追加
+    // 最後に右マージンを追加する
     currentPosition += _offsetHorizontal;
     _contentSize = CGSizeMake(currentPosition, _pageHeight);
     _rectInfos = sectionRects;
+    // 親クラスの持つプロパティをセットする
+    self.minimumInteritemSpacing = 0.f;
+    self.minimumLineSpacing = 0.f;
+    self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.itemSize = CGSizeMake(_cellWidth, _cellHeight);
+    self.sectionInset = UIEdgeInsetsMake(0, _offsetHorizontal, 0, _offsetHorizontal);
 }
-
 
 - (CGSize)collectionViewContentSize {
     return _contentSize;
@@ -69,14 +82,17 @@
     return YES;
 }
 
--(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
-{
+/*
+ _rectInfosの各レイアウト情報のうち引数rectとヒットするものを配列で取得する
+ */
+-(NSArray *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSMutableArray *attributesArray = [NSMutableArray array];
     NSInteger sectionCount = [self.collectionView numberOfSections];
     for (int section = 0; section < sectionCount; section++) {
         for (int i = 0; i < [self.collectionView numberOfItemsInSection:section]; i++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:section];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+            // 2つのrectが重なっているかどうか
             if (CGRectIntersectsRect(rect, attributes.frame)) {
                 [attributesArray addObject:attributes];
             }
@@ -90,27 +106,41 @@
 }
 
 -(CGPoint) targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset
-                                 withScrollingVelocity:(CGPoint)velocity
-{
+                                 withScrollingVelocity:(CGPoint)velocity {
+    NSLog(@"%@", NSStringFromCGPoint(velocity));
+    // 調整後スクロール位置
     CGFloat offsetAdjustment = MAXFLOAT;
-    CGFloat targetX = proposedContentOffset.x + self.minimumInteritemSpacing + self.sectionInset.left;
-    
-    CGRect targetRect = CGRectMake(proposedContentOffset.x, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
-    
-    NSArray *array = [super layoutAttributesForElementsInRect:targetRect];
+    // 現在のスクロール位置（端の部分を加算する）
+    CGFloat targetX = proposedContentOffset.x + self.minimumInteritemSpacing + _offsetHorizontal;
+    NSLog(@"%f", targetX);
+    // 画面に表示している矩形を取得する（現在のスクロール位置X座標を基点としたcollectionViewのサイズ）
+    CGFloat proposedContentOffsetX = proposedContentOffset.x;
+    // 加速度が一定以上ある場合にはその方向へずらす
+    if (fabs(velocity.x) > [self flickVelocity]) {
+        proposedContentOffsetX += MAX(0, MIN(_contentSize.width, _pageWidth * velocity.x));
+    }
+    CGRect targetRect = CGRectMake(proposedContentOffsetX, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
+    NSLog(@"%f ,%@", proposedContentOffsetX, NSStringFromCGRect(targetRect));
+    // オーバーライドしたメソッドを利用するためselfでの呼び出し
+    NSArray *array = [self layoutAttributesForElementsInRect:targetRect];
     for(UICollectionViewLayoutAttributes *layoutAttributes in array) {
-        
         if(layoutAttributes.representedElementCategory == UICollectionElementCategoryCell) {
+            // 表示されている矩形の中にあるセルのうち最も距離の近いものにあわせてoffsetAdjustmentを調整する
             CGFloat itemX = layoutAttributes.frame.origin.x;
-            
             if (ABS(itemX - targetX) < ABS(offsetAdjustment)) {
                 offsetAdjustment = itemX - targetX;
+                NSLog(@"%f = %f - %f", offsetAdjustment, itemX, targetX);
             }
         }
     }
-    
     return CGPointMake(proposedContentOffset.x + offsetAdjustment, proposedContentOffset.y);
 }
 
+/*
+ 加速度補正を行うかどうかの閾値
+ */
+- (CGFloat)flickVelocity {
+    return 0.5;
+}
 
 @end
