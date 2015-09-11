@@ -107,12 +107,10 @@
 
 -(CGPoint) targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset
                                  withScrollingVelocity:(CGPoint)velocity {
-    NSLog(@"%@", NSStringFromCGPoint(velocity));
     // 調整後スクロール位置
     CGFloat offsetAdjustment = MAXFLOAT;
     // 現在のスクロール位置（端の部分を加算する）
     CGFloat targetX = proposedContentOffset.x + self.minimumInteritemSpacing + _offsetHorizontal;
-    NSLog(@"%f", targetX);
     // 画面に表示している矩形を取得する（現在のスクロール位置X座標を基点としたcollectionViewのサイズ）
     CGFloat proposedContentOffsetX = proposedContentOffset.x;
     // 加速度が一定以上ある場合にはその方向へずらす
@@ -120,7 +118,6 @@
         proposedContentOffsetX += MAX(0, MIN(_contentSize.width, _pageWidth * velocity.x));
     }
     CGRect targetRect = CGRectMake(proposedContentOffsetX, 0.0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
-    NSLog(@"%f ,%@", proposedContentOffsetX, NSStringFromCGRect(targetRect));
     // オーバーライドしたメソッドを利用するためselfでの呼び出し
     NSArray *array = [self layoutAttributesForElementsInRect:targetRect];
     for(UICollectionViewLayoutAttributes *layoutAttributes in array) {
@@ -129,7 +126,6 @@
             CGFloat itemX = layoutAttributes.frame.origin.x;
             if (ABS(itemX - targetX) < ABS(offsetAdjustment)) {
                 offsetAdjustment = itemX - targetX;
-                NSLog(@"%f = %f - %f", offsetAdjustment, itemX, targetX);
             }
         }
     }
