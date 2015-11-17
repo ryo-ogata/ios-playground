@@ -10,6 +10,7 @@
 
 typedef enum : NSUInteger {
     OPIMenuCollectionViewLayout,
+    OPIEncryption,
     OPIMenuLimit,
 } OPIMenuItem;
 
@@ -43,6 +44,9 @@ typedef enum : NSUInteger {
         case OPIMenuCollectionViewLayout: {
             cell.textLabel.text = @"UICollectionViewFlowLayout";
         } break;
+        case OPIEncryption: {
+            cell.textLabel.text = @"Encryption";
+        } break;
         default: {
             
         } break;
@@ -59,6 +63,9 @@ typedef enum : NSUInteger {
     switch (indexPath.row) {
         case OPIMenuCollectionViewLayout: {
             vc = [sb instantiateViewControllerWithIdentifier:@"UICollectionViewFlowLayoutViewController"];
+        } break;
+        case OPIEncryption: {
+            vc = [sb instantiateViewControllerWithIdentifier:@"EncryptionViewController"];
         } break;
         default: {
             

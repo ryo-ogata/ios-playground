@@ -24,6 +24,9 @@
 		4759190C1B8EE150006CF19D /* CustomCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4759190A1B8EE150006CF19D /* CustomCollectionView.m */; };
 		4759190F1B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4759190E1B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m */; };
 		475919101B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4759190E1B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m */; };
+		480C93061BF1D96200B00279 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480C93051BF1D96200B00279 /* JavaScriptCore.framework */; };
+		48CE42EA1BF1BD5E00012447 /* EncryptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE42E91BF1BD5E00012447 /* EncryptionViewController.m */; };
+		48CE42EB1BF1BD5E00012447 /* EncryptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CE42E91BF1BD5E00012447 /* EncryptionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,10 @@
 		4759190A1B8EE150006CF19D /* CustomCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionView.m; sourceTree = "<group>"; };
 		4759190D1B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		4759190E1B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		480C93031BF1D48300B00279 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
+		480C93051BF1D96200B00279 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		48CE42E81BF1BD5E00012447 /* EncryptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptionViewController.h; sourceTree = "<group>"; };
+		48CE42E91BF1BD5E00012447 /* EncryptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EncryptionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				480C93061BF1D96200B00279 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,9 +89,11 @@
 		475918AA1B8ED3C3006CF19D = {
 			isa = PBXGroup;
 			children = (
+				480C93031BF1D48300B00279 /* libcommonCrypto.tbd */,
 				475918B51B8ED3C3006CF19D /* ios-playground */,
 				475918D21B8ED3C4006CF19D /* ios-playgroundTests */,
 				475918B41B8ED3C3006CF19D /* Products */,
+				487DC8A21BF32A3100DCF6F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				475918E01B8EDDBA006CF19D /* UICollectionViewFlowLayout */,
+				48CE42E71BF1BD1700012447 /* Encryption */,
 				475918E91B8EDE19006CF19D /* AppDelegate.h */,
 				475918EA1B8EDE19006CF19D /* AppDelegate.m */,
 				475918EB1B8EDE19006CF19D /* TopViewController.h */,
@@ -159,6 +170,23 @@
 				4759190E1B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m */,
 			);
 			path = UICollectionViewFlowLayout;
+			sourceTree = "<group>";
+		};
+		487DC8A21BF32A3100DCF6F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				480C93051BF1D96200B00279 /* JavaScriptCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48CE42E71BF1BD1700012447 /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				48CE42E81BF1BD5E00012447 /* EncryptionViewController.h */,
+				48CE42E91BF1BD5E00012447 /* EncryptionViewController.m */,
+			);
+			path = Encryption;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +297,7 @@
 				475919011B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m in Sources */,
 				475919071B8EE099006CF19D /* CustomCollectionViewCell.m in Sources */,
 				4759190F1B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m in Sources */,
+				48CE42EA1BF1BD5E00012447 /* EncryptionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +312,7 @@
 				475919021B8EDF48006CF19D /* UICollectionViewFlowLayoutViewController.m in Sources */,
 				475919081B8EE099006CF19D /* CustomCollectionViewCell.m in Sources */,
 				475919101B8EE1F1006CF19D /* CustomCollectionViewFlowLayout.m in Sources */,
+				48CE42EB1BF1BD5E00012447 /* EncryptionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,8 +435,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ios-playground/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios-playground/Classes/UICollectionViewFlowLayout/ios-playground-Bridging-Header.h";
@@ -421,8 +456,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ios-playground/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios-playground/Classes/UICollectionViewFlowLayout/ios-playground-Bridging-Header.h";
@@ -442,6 +482,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ios-playgroundTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -460,6 +501,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ios-playgroundTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
